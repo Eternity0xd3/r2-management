@@ -1,0 +1,21 @@
+[project]
+name = "r2_management"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Eternity0xd3", email = "eternity211@126.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.43.68",
+    "colorama>=0.4.6",
+    "dotenv>=0.9.9",
+]
+
+[project.scripts]
+r2-management = "r2_management:main"
+
+[build-system]
+requires = ["uv_build>=0.12.2,<0.13.0"]
+build-backend = "uv_build"
