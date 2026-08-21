@@ -1,5 +1,5 @@
 from r2_management import R2Management
-import terminal_ui, cli
+import r2_app.terminal_ui as terminal_ui, r2_app.cli as cli
 
 from dotenv import load_dotenv
 import os, sys

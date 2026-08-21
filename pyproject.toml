@@ -15,7 +15,7 @@ dependencies = [
 
 [project.scripts]
 r2-management = "r2_management:main"
-r2 = "main:main"
+r2 = "r2_app.main:main"
 
 [build-system]
 requires = ["uv_build>=0.12.2,<0.13.0"]

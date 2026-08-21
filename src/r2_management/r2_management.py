@@ -27,6 +27,15 @@ class R2Management:
         else:
             return f"{object_name}"
 
+    def upload_multiple(self, file_paths, object_dir) -> list[str]:
+        object_results = []
+        object_dir = object_dir if object_dir.endswith("/") else object_dir + "/"
+        for each_file in file_paths:
+            file_name = Path(each_file).name
+            object_name = object_dir + file_name 
+            object_results.append(self.upload(each_file, object_name))
+        return object_results
+
     def download(self, object_name, file_path) -> None:
         if not self.is_object_exists(object_name):
             raise ValueError("Object does not exist in bucket")

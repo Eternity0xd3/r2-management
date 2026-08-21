@@ -10,8 +10,19 @@ def create_parser():
 
     # upload
     upload_parser = subparsers.add_parser("upload")
-    upload_parser.add_argument("file")
-    upload_parser.add_argument("key")
+    upload_parser.add_argument(
+        "files",
+        nargs="+"
+    )
+    group = upload_parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
+        "--name",
+        help="Object name for a single file"
+    )
+    group.add_argument(
+        "--dir",
+        help="Object directory for multiple files"
+    )
 
     # list
     subparsers.add_parser("list")
@@ -32,7 +43,10 @@ def run(r2, args):
     parsed = parser.parse_args(args)
 
     if parsed.command == "upload":
-        r2.upload(parsed.file, parsed.key)
+        if parsed.name:
+            r2.upload(parsed.files[0], parsed.name)
+        elif parsed.dir:
+            r2.upload_multiple(parsed.files, parsed.dir)
 
     elif parsed.command == "list":
         keys = r2.list()
